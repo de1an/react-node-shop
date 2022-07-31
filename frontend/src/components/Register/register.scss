@@ -1,0 +1,67 @@
+@import "../../App.scss";
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex;
+  h2 {
+    font-size: 72px;
+    color: $white;
+    user-select: none;
+    line-height: 1;
+    span {
+     border-bottom: 4px solid $white ;
+    }
+  }
+  p {
+    span {
+      text-decoration: underline;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+  }
+}
+
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 450px;
+  background-color: $black;
+  height: 80vh;
+  border-radius: 20px;
+  box-shadow: 2px 3px 8px $black;
+  padding: 25px 20px;
+  color: $white;
+  input {
+    width: 100%;
+    background-color: $black;
+    outline: none;
+    color: $white;
+    font-weight: 700;
+    border: 1px solid $white;
+    padding: 10px;
+    transition: $transition;
+    border-radius: 10px;
+    &::placeholder {
+      color: $white;
+    }
+    &:focus {
+      border-color: $gray;
+    }
+  }
+  select {
+    background-color: $black;
+    color: $white;
+    padding: 10px;
+    font-weight: 700;
+    border-radius: 10px;
+    border: 1px solid $white;
+    transition: $transition;
+    &:focus {
+      border-color: $gray;
+    }
+  }
+}

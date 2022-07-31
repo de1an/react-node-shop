@@ -1,0 +1,44 @@
+@import "../../App.scss";
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 450px;
+  background-color: $black;
+  height: 80vh;
+  border-radius: 20px;
+  box-shadow: 2px 3px 8px $black;
+  padding: 25px 20px;
+  color: $white;
+
+  h2 {
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    input {
+      width: 100%;
+      background-color: $black;
+      outline: none;
+      color: $white;
+      font-weight: 700;
+      border: 1px solid $white;
+      padding: 10px;
+      transition: $transition;
+      &::placeholder {
+        color: $white;
+      }
+      &:focus {
+        border-radius: 10px;
+        border-color: $gray;
+      }
+    }
+    .show-password {
+      cursor: pointer;
+    }
+  }
+}

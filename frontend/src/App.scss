@@ -1,0 +1,35 @@
+$black: #262626;
+$purple: #6912cb;
+$blue: #2574fb;
+$white: #fff;
+$gray: #767676;
+$transition: .3s ease-in;
+
+p {
+  color: $gray;
+}
+a {
+  color: $gray !important;
+  text-decoration: none !important;
+  transition: $transition;
+  &:hover {
+    color: $white !important;
+  }
+}
+
+.primary-btn {
+  background-color: $black;
+  padding: 15px 25px;
+  color: $white;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 5px;
+  border: 2px solid $white;
+  min-width: 150px;
+  transition: $transition;
+  &:hover {
+    background-color: $white;
+    color: $black;
+    
+  }
+}
