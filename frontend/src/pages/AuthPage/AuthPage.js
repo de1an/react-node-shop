@@ -4,7 +4,7 @@ import Register from "../../components/Register/Register";
 import "./authPage.scss";
 
 function AuthPage() {
-	const [isLogin, setIsLogin] = useState(false);
+	const [isLogin, setIsLogin] = useState(true);
 
 	return (
 		<div className="auth-page-wrapper">

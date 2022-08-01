@@ -24,7 +24,7 @@ app.post("/api/login", (req, res) => {
       return;
     }
     if (user) res.send(user)
-    else res.send("Failed login");
+    else res.status(400).send("Failed login");
   })
 });
 
