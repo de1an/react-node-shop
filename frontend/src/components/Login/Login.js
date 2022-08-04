@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import AuthService from "../../services/AuthService";
 import PasswordField from "../PasswordField/PasswordField";
 import { routerConfig } from "../../config/routerConfig";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/userSlice";
 import "./login.scss";
 
 function Login({ showLoginForm }) {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const [isFormValid, setIsFormValid] = useState(true);
 	const [isApiSuccess, setIsApiSuccess] = useState(true);
 	const [isUserExists, setIsUserExists] = useState(true);
@@ -36,11 +39,12 @@ function Login({ showLoginForm }) {
 			.then((response) => {
 				if (response && response.status === 200) {
 					localStorage.setItem("user", JSON.stringify(response.data));
+					dispatch(setUser(response.data));
 					navigate(routerConfig.SHOP.url);
 				}
 			})
 			.catch((err) => {
-				if(err.response.status === 400){
+				if (err.response.status === 400) {
 					setIsUserExists(false);
 					return;
 				}

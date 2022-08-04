@@ -1,0 +1,56 @@
+@import "../../App.scss";
+
+.navigation {
+  padding: 5px 0;
+  border-bottom: 1px solid $blue;
+  background-color: $blue;
+  .link-nav {
+    margin-left: 25px;
+    font-size: 20px;
+    border-bottom: 2px solid transparent;
+    color: $white !important;
+    &:hover {
+      color: $black !important;
+      border-bottom: 2px solid $black;
+    }
+    &.active {
+      color: $black !important;
+      border-bottom: 2px solid $black;
+    }
+  }
+  .links-group {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+}
+.logo {
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  font-size: 50px;
+  color: $white !important;
+  &:hover {
+    color: $black !important;
+  }
+}
+
+.dropdown {
+  .secondary-btn {
+    margin-left: 25px;
+    .icon {
+      margin-left: 5px;
+    }
+  }
+  .dropdown-menu {
+    padding: 0;
+  }
+  .dropdown-item {
+    text-align: end;
+    padding: 10px;
+    color: $black !important;
+    &:hover {
+      background-color: $blue;
+      color: $white !important;
+    }
+  }
+}
