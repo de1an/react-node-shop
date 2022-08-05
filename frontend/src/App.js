@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 import MyAdsPage from "./pages/MyAdsPage/MyAdsPage";
+import UserActivePage from "./pages/UserActivePage/UserActivePage";
 
 axios.defaults.baseURL = "http://localhost:4000";
 
@@ -25,9 +26,9 @@ function App() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const handleUserLogin = () => {
+	const handleUserLogin = async () => {
 		if (!localStorage.getItem("user")) {
-			navigate(routerConfig.AUTH.url);
+			// navigate(routerConfig.AUTH.url);
 		} else {
 			dispatch(setUser(JSON.parse(localStorage.getItem("user"))));
 		}
@@ -40,8 +41,15 @@ function App() {
 				<Route path={routerConfig.HOME.url} element={<HomePage />} />
 				<Route path={routerConfig.AUTH.url} element={<AuthPage />} />
 				<Route path={routerConfig.SHOP.url} element={<ShopPage />} />
-				<Route path={routerConfig.USER_PROFILE.url} element={<UserProfilePage />} />
+				<Route
+					path={routerConfig.USER_PROFILE.url}
+					element={<UserProfilePage />}
+				/>
 				<Route path={routerConfig.MY_ADS.url} element={<MyAdsPage />} />
+				<Route
+					path={routerConfig.USER_ACTIVE.url}
+					element={<UserActivePage />}
+				/>
 			</Routes>
 		</div>
 	);

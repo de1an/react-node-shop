@@ -34,7 +34,7 @@ function Register({ showLoginForm }) {
 		AuthService.register(user)
 			.then((res) => {
 				if (res && res.status === 200) {
-					toast.success("You have successfully registered, please login", {autoClose: 3000});
+					toast.success(res.data, {autoClose: 3000});
 					setTimeout(() => {
 						showLoginForm(true);
 					}, 4000);

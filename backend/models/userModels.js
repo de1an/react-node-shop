@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema({
 	address: { type: String },
 	postCode: { type: String },
 	city: { type: String },
-	isAdmin: { type: Boolean, default: false }
+	isAdmin: { type: Boolean, default: false },
+	isActive: { type: Boolean, default: false },
 });
 
 const userModel = mongoose.model("User", userSchema);

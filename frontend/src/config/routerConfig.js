@@ -15,6 +15,9 @@ export const routerConfig = {
 		name: "Your profile",
 		url: '/userProfile'
 	},
+	USER_ACTIVE: {
+		url: '/user-activate/:id'
+	},
 	MY_ADS: {
 		name: "My ads",
 		url: "/my-ads"
