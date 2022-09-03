@@ -1,0 +1,27 @@
+@import "../../App.scss";
+
+.popup-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($black, 0.5);
+  .popup {
+    background-color: $white;
+    min-width: 500px;
+    max-width: 800px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px 0px rgba($black, 0.75);
+    padding: 20px;
+    .close-icon {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
