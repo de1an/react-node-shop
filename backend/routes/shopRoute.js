@@ -4,26 +4,31 @@ const path = require("path");
 const routes = express.Router();
 const Product = require("../models/productModel");
 
-routes.post("/add-product", fileUpload(), (req, res) => {
-	const images = req.files.images; // one value is an object and multiple value are array
-	const product = JSON.parse(req.body.product);
-	const time = new Date().getTime();
+routes.post("/add-product", fileUpload(), async (req, res) => {
+	const userImages = req.files.images; // one value is an object and multiple value are array
+	const userProduct = JSON.parse(req.body.product);
+	let arrayOfImages = null;
+	const arrayOfImagesNames = [];
 
-	if (images.length) {
-		// more images
-	} else {
-		// one image
-		const fileName = `${time}${images.name}`;
-		const filePath = path.join(__dirname, `../uploads/images/${fileName}`);
-		let ads = { images: [fileName], ...product };
+	if (!userImages.length) {
+		arrayOfImages = [];
+		arrayOfImages[0] = userImages;
+	} else arrayOfImages = [...userImages];
 
-		images.mv(filePath, async (err) => {
+	arrayOfImages.forEach((image) => {
+		let time = new Date().getTime();
+		let fileName = `${time}${image.name}`;
+		let filePath = path.join(__dirname, `../uploads/images/${fileName}`);
+		arrayOfImagesNames.push(fileName)
+
+		image.mv(filePath, err => {
 			err && res.status(500).send("Error on upload image");
-
-			await Product.create(ads);
-			res.send("Successfully uploaded your product");
 		});
-	}
+		
+	});
+	let ads = { images: arrayOfImagesNames, ...userProduct };
+	await Product.create(ads);
+	res.send("OK");
 });
 
 routes.get("/get-my-ads/:userId", (req, res) => {

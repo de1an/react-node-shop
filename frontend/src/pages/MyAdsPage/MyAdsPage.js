@@ -21,6 +21,7 @@ function MyAdsPage() {
 			.catch((err) => {
 				setIsApiError(true);
 			});
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const onHandleClick = () => {
@@ -28,7 +29,7 @@ function MyAdsPage() {
 	};
 	return (
 		<>
-			<div className="container my-3">
+			<div className="container my-3 px-0">
 				<button className="primary-btn mb-5" onClick={onHandleClick}>
 					Add new products
 				</button>
