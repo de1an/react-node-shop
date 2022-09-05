@@ -77,14 +77,9 @@ function AddAds({ closePopup }) {
 							name="title"
 							className="form-control mb-3"
 						/>
-						<label htmlFor="title">Product description</label>
-						<input
-							onInput={onHandleInput}
-							type="text"
-							name="description"
-							className="form-control mb-3"
-						/>
-						<label htmlFor="title">Product price</label>
+						<label htmlFor="description">Product description</label>
+						<textarea onInput={onHandleInput} className="form-control mb-3" name="description"  cols="10" rows="3"/>
+						<label htmlFor="price">Product price</label>
 						<input
 							onInput={onHandleInput}
 							type="number"

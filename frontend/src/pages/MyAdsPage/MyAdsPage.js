@@ -33,8 +33,8 @@ function MyAdsPage() {
 				<button className="primary-btn mb-5" onClick={onHandleClick}>
 					Add new products
 				</button>
-				<div className="row">
-					{isApiError && (<p>We are currently unable to show you you products.</p>)}
+				<div className="row d-flex justify-content-between">
+					{isApiError && (<p>We are currently unable to show you your products.</p>)}
 
 					{myProducts.map((product, index) => {
 						return <MyAd product={product} key={index} />;
