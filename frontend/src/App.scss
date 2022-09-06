@@ -6,6 +6,7 @@ $blue: #2574fb;
 $white: #fff;
 $gray: #767676;
 $transition: .3s ease-in;
+$box-shadow: 8px 8px 20px 0px rgba($gray, .5);
 
 * {
   margin-bottom: 0 !important;
@@ -14,7 +15,7 @@ p {
   color: $gray;
 }
 a {
-  color: $gray !important;
+  color: $gray;
   text-decoration: none !important;
   transition: $transition;
   &:hover {

@@ -13,6 +13,7 @@ import "./App.scss";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 import MyAdsPage from "./pages/MyAdsPage/MyAdsPage";
 import UserActivePage from "./pages/UserActivePage/UserActivePage";
+import SingleAdPage from "./pages/SingleAdPage/SingleAdPage";
 
 axios.defaults.baseURL = "http://localhost:4000";
 
@@ -41,6 +42,7 @@ function App() {
 				<Route path={routerConfig.HOME.url} element={<HomePage />} />
 				<Route path={routerConfig.AUTH.url} element={<AuthPage />} />
 				<Route path={routerConfig.SHOP.url} element={<ShopPage />} />
+				<Route path={routerConfig.SHOP_AD.url} element={<SingleAdPage />}/>
 				<Route
 					path={routerConfig.USER_PROFILE.url}
 					element={<UserProfilePage />}

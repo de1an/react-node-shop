@@ -21,5 +21,8 @@ export const routerConfig = {
 	MY_ADS: {
 		name: "My ads",
 		url: "/my-ads"
+	},
+	SHOP_AD: {
+		url: "/shop/ad/:id",
 	}
 };

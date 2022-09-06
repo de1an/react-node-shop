@@ -1,0 +1,37 @@
+@import "../../App.scss";
+
+.ads-container {
+  display: flex;
+  align-items: center;
+  height: 300px;
+  box-shadow: 8px 8px 20px 0px rgba($blue, .2);
+  border-radius: 15px;
+  transition: $transition;
+  &:hover {
+    box-shadow: 8px 8px 20px 0px rgba($blue, 1);
+  }
+  div:first-child {
+    img {
+      width: 60%;
+    }
+  }
+  div:last-child {
+    .ad-price {
+      font-size: 22px;
+      font-style: italic;
+      span {
+        color: $purple;
+      }
+    }
+    .primary-btn {
+      padding: 10px 30px;
+      background-color: $blue;
+      border: 2px solid $blue;
+      transition: $transition;
+      &:hover {
+        border-color: $purple;
+        background-color: $purple;
+      }
+    }
+  }
+}

@@ -11,6 +11,9 @@ class ShopService {
   static getMyAds(userId){
     return axios.get(`/api/shop/get-my-ads/${userId}`);
   }
+  static getAllAds(){
+    return axios.get("/api/shop/get-all-ads");
+  }
 }
 
 export default ShopService;

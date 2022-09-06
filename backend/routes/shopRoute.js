@@ -4,6 +4,13 @@ const path = require("path");
 const routes = express.Router();
 const Product = require("../models/productModel");
 
+routes.get("/get-all-ads", (req, res) => {
+	Product.find({}, (err, products) => {
+		if(err) res.status(501).send("Something went wrong");
+		products ? res.send(products) : res.status(400).send("Products don't exists");
+	})
+})
+
 routes.post("/add-product", fileUpload(), async (req, res) => {
 	const userImages = req.files.images; // one value is an object and multiple value are array
 	const userProduct = JSON.parse(req.body.product);
