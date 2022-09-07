@@ -1,0 +1,20 @@
+@import "../../App.scss";
+
+.single-ad {
+  .main-info {
+    .quantity {
+      width: 50px;
+      text-align: center;
+      border: 2px solid $blue;
+    }
+    p {
+      span {
+        color: $purple;
+      }
+    }
+    .primary-btn {
+      border: 2px solid $black;
+      padding: 10px 20px;
+    }
+  }
+}

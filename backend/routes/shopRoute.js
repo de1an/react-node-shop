@@ -6,10 +6,21 @@ const Product = require("../models/productModel");
 
 routes.get("/get-all-ads", (req, res) => {
 	Product.find({}, (err, products) => {
-		if(err) res.status(501).send("Something went wrong");
-		products ? res.send(products) : res.status(400).send("Products don't exists");
+		if (err) res.status(501).send("Something went wrong");
+		products
+			? res.send(products)
+			: res.status(400).send("Products don't exists");
+	});
+});
+
+routes.get("/get-single-ad/:id", (req, res) => {
+	const { id } = req.params;
+	
+	Product.findOne({_id: id}, (err, data) => {
+		if(err) res.status(500).send("Error");
+		data ? res.send(data) : res.status(400).send("The product doesn't exist");
 	})
-})
+});
 
 routes.post("/add-product", fileUpload(), async (req, res) => {
 	const userImages = req.files.images; // one value is an object and multiple value are array
@@ -26,12 +37,11 @@ routes.post("/add-product", fileUpload(), async (req, res) => {
 		let time = new Date().getTime();
 		let fileName = `${time}${image.name}`;
 		let filePath = path.join(__dirname, `../uploads/images/${fileName}`);
-		arrayOfImagesNames.push(fileName)
+		arrayOfImagesNames.push(fileName);
 
-		image.mv(filePath, err => {
+		image.mv(filePath, (err) => {
 			err && res.status(500).send("Error on upload image");
 		});
-		
 	});
 	let ads = { images: arrayOfImagesNames, ...userProduct };
 	await Product.create(ads);

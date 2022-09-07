@@ -47,6 +47,7 @@ function ShopPage() {
   }
 	return (
     <div className="container">
+      {isApiError && <p>An error has occurred, please try again later</p>}
       {(isApiFinish && ads.length) && productsLayout()}
     </div>
   );
