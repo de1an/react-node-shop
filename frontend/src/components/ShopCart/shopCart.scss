@@ -1,0 +1,80 @@
+@import "../../App.scss";
+
+.shop-cart-wrapper {
+  position: relative;
+  color: $white;
+  cursor: pointer;
+  transition: $transition;
+  &:hover {
+    color: $black;
+  }
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+  .cart-badge {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    background-color: $gray;
+    color: $white;
+    border-radius: 50%;
+  }
+}
+
+.cart-layout {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  height: 100vh;
+  background-color: $white;
+  border-left: 1px solid $blue;
+  width: 25%;
+  z-index: 3;
+  opacity: 0;
+  transform: translateX(50%);
+  transition: $transition;
+  &.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .shop-content {
+    position: relative;
+    .close-icon {
+      position: absolute;
+      top: 0; right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+      padding: 0px 5px 5px 5px;
+      transition: $transition;
+      &:hover {
+        background-color: $black;
+        color: $white;
+      }
+    }
+    .primary-btn {
+      padding: 10px 20px;
+      border: 2px solid $black;
+    }
+    .main-content {
+      overflow-x: hidden;
+      overflow-y: scroll;
+      height: 50vh;
+      scrollbar-base-color: $blue;
+      .price {
+        color: $purple;
+        font-weight: bold;
+        font-stretch: italic;
+      }
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: $blue;
+      }
+    }
+  }
+}
+

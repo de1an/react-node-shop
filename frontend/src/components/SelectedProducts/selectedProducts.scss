@@ -1,0 +1,15 @@
+@import "../../App.scss";
+
+.trash-icon {
+  transition: $transition;
+  cursor: pointer;
+  font-size: 20px;
+  &:hover {
+    color: rgb(197, 28, 28);
+  }
+}
+.price {
+  color: $purple;
+  font-weight: bold;
+  font-style: italic;
+}

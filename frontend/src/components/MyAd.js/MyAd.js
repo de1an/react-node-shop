@@ -1,6 +1,7 @@
 import React from "react";
-import "./myAd.scss";
+import ShopFunctions from "../../utilities/ShopFunctions";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import "./myAd.scss";
 
 function MyAd({ product }) {
 	return (
@@ -22,12 +23,7 @@ function MyAd({ product }) {
 				<p className="product-price">
 					Price:&nbsp;
 					<span>
-						{product.price.toLocaleString(undefined, {
-							minimumFractionDigits: 2,
-							maximumFractionDigits: 2,
-							style: "currency",
-							currency: "EUR",
-						})}
+						{ShopFunctions.calculatePrice(product.price)}
 					</span>
 				</p>
 				<div className="product-icons mt-4">

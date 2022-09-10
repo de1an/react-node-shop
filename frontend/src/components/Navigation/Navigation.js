@@ -4,6 +4,7 @@ import { routerConfig } from "../../config/routerConfig";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser } from "../../redux/userSlice";
 import "./navigation.scss";
+import ShopCart from "../ShopCart/ShopCart";
 
 function Navigation() {
   const dispatch = useDispatch();
@@ -83,7 +84,11 @@ function Navigation() {
 									{routerConfig.SHOP.name}
 								</NavLink>
 							</li>
+							<li className="ms-4">
+								<ShopCart />
+							</li>
 							{userBtnLayout()}
+
 						</ul>
 					</div>
 				</div>

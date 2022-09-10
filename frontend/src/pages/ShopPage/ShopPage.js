@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ShopService from "../../services/ShopService";
 import { Link } from "react-router-dom";
 import "./shopPage.scss";
+import ShopFunctions from "../../utilities/ShopFunctions";
 
 function ShopPage() {
 	const [ads, setAds] = useState([]);
@@ -32,12 +33,7 @@ function ShopPage() {
         <div className="col-md-8 p-3">
           <h2 className="fw-bold">{ad.title}</h2>
           <p className="my-3">{ad.description.slice(0,100)}...</p>
-          <p className="fw-bold ad-price">Price: <span>{ad.price.toLocaleString(undefined, {
-							minimumFractionDigits: 2,
-							maximumFractionDigits: 2,
-							style: "currency",
-							currency: "EUR",
-						})}</span>
+          <p className="fw-bold ad-price">Price: <span>{ShopFunctions.calculatePrice(ad.price)}</span>
           </p>
           <Link to={`/shop/ad/${ad._id}`} className="primary-btn mt-3 d-inline-block">See more</Link>
         </div>

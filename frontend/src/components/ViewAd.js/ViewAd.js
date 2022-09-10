@@ -1,39 +1,68 @@
-import React, {useState} from 'react';
-import {FaShoppingCart} from "react-icons/fa";
+import React, { useState } from "react";
+import { FaShoppingCart } from "react-icons/fa";
+import ProductSlider from "../ProductSlider/ProductSlider";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cartSlice";
 import "./viewAd.scss";
+import ShopFunctions from "../../utilities/ShopFunctions";
 
-function ViewAd({ad}) {
-  const [quantity, setQuantity] = useState(1)
-  const onHandleQuantity = (e) => {
-    if (e.target.value < 1) {
-      setQuantity(1);
-      return;
-    }
-    setQuantity(e.target.value);
-  }
+function ViewAd({ ad }) {
+	const [quantity, setQuantity] = useState(1);
 
-  return (
-    ad &&
-    (<div className="row single-ad d-flex align-items-center">
-      <div className="col-md-5 slider-container">
-        {/* slider */}
-        <img src={`http://localhost:4000/uploads/images/${ad.images[0]}`} alt={ad.title} className="img-fluid" />
-      </div>
-      <div className="col-md-7 px-3 main-info">
-        <h3 className="mb-3">{ad.title}</h3>
-        <p className="mb-2">{ad.description}</p>
-        <p className="mb-2 fw-bold fst-italic fs-3">Price: <span className="price">{(ad.price * quantity).toLocaleString(undefined, {
-							minimumFractionDigits: 2,
-							maximumFractionDigits: 2,
-							style: "currency",
-							currency: "EUR",
-						})}</span></p>
-        <input type="number" className="quantity" defaultValue="1" min="1" onInput={onHandleQuantity} />
+	const dispatch = useDispatch();
 
-        <button className="primary-btn d-block mt-4"><span><FaShoppingCart /></span> Add To Cart</button>
-      </div>
-    </div>)
-  )
+	const onHandleQuantity = (e) => {
+		if (e.target.value < 1) {
+			setQuantity(1);
+			return;
+		}
+		setQuantity(e.target.value);
+	};
+
+	const addToCartStore = () => {
+		let copyAd = {...ad}
+		copyAd.quantity = parseInt(quantity);
+		copyAd.totalPrice =  parseInt(copyAd.quantity * copyAd.price);
+		dispatch(addToCart(copyAd));
+	}
+
+	return (
+		ad && (
+			<div className="row single-ad d-flex align-items-center">
+				<div className="col-md-6 slider-container">
+					<ProductSlider images={ad.images} />
+				</div>
+				<div className="col-md-6 px-3 main-info">
+					<h3 className="mb-3">{ad.title}</h3>
+					<p className="mb-2">{ad.description}</p>
+					<p className="mb-2 fw-bold fst-italic fs-3">
+						Price:{" "}
+						<span className="price">
+							{ShopFunctions.calculatePrice(ad.price, quantity)}
+						</span>
+					</p>
+
+					<p className="me-3 fw-bold fst-italic d-inline">
+						Quantity:
+					</p>
+					<input
+						type="number"
+						className="quantity"
+						defaultValue="1"
+						min="1"
+						onInput={onHandleQuantity}
+					/>
+
+					<button onClick={addToCartStore} className="primary-btn d-block mt-4">
+						<span>
+							<FaShoppingCart />
+						</span>{" "}
+						Add To Cart
+					</button>
+				</div>
+			</div>
+		)
+	);
 }
 
 export default ViewAd;
