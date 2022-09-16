@@ -1,7 +1,7 @@
 @import "../../App.scss";
 
 .product-card {
-  width: 32%!important;
+  width: 33%;
   &:hover {
     transition: $transition;
     box-shadow: $box-shadow;
@@ -46,6 +46,12 @@
         text-align: center;
         &:hover {
           color: $black;
+        }
+        a {
+          color: $white;
+          &:hover {
+            color: $black!important;
+          }
         }
       }
     }

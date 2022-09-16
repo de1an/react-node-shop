@@ -21,6 +21,9 @@ function ShopCart() {
 
   const showCartLayout = () => {
     cartLayoutRef.current.classList.toggle("active");
+    if (cartLayoutRef.current.classList.contains("active")) {
+      document.body.style.overflowY = "hidden";
+    } else document.body.style.overflowY = "scroll";
   }
 
   const onHandleTotalPrice = () => {
@@ -39,7 +42,7 @@ function ShopCart() {
         <h4 className="text-center mt-5 fw-bold">Your shop cart</h4>
         <div className="main-content">
           {cart.map((ad, index) => {
-            return <SelectedProduts handlePrice={onHandleTotalPrice} ad={ad} key={index}/>
+            return <SelectedProduts ad={ad} key={index} index={index}/>
           })}
         </div>
         <p className="mt-5 fw-bold">Total price: <span className="price">{ShopFunctions.calculatePrice(totalPrice)}</span></p>
@@ -49,7 +52,6 @@ function ShopCart() {
 		<div className="shop-cart-wrapper" onClick={showCartLayout}>
 			<FaShoppingCart />
       {cart.length > 0 && <span className="badge cart-badge">{cart.length}</span>}
-
 		</div>
     </>
 	);

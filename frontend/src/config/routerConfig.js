@@ -22,7 +22,12 @@ export const routerConfig = {
 		name: "My ads",
 		url: "/my-ads"
 	},
+	MY_ADS_EDIT: {
+		url: "/my-ads/edit-product/:id",
+		realUrl: (id) => `/my-ads/edit-product/${id}`
+	},
 	SHOP_AD: {
 		url: "/shop/ad/:id",
+		realUrl: (id) => `/shop/ad/${id}`
 	}
 };

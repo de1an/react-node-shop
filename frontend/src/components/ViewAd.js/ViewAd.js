@@ -5,10 +5,10 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
 import "./viewAd.scss";
 import ShopFunctions from "../../utilities/ShopFunctions";
+import { toast, ToastContainer } from "react-toastify";
 
 function ViewAd({ ad }) {
 	const [quantity, setQuantity] = useState(1);
-
 	const dispatch = useDispatch();
 
 	const onHandleQuantity = (e) => {
@@ -24,6 +24,7 @@ function ViewAd({ ad }) {
 		copyAd.quantity = parseInt(quantity);
 		copyAd.totalPrice =  parseInt(copyAd.quantity * copyAd.price);
 		dispatch(addToCart(copyAd));
+		toast.success("Successfully added to cart", {autoClose: 1500})
 	}
 
 	return (
@@ -60,6 +61,7 @@ function ViewAd({ ad }) {
 						Add To Cart
 					</button>
 				</div>
+				<ToastContainer />
 			</div>
 		)
 	);

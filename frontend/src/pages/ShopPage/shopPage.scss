@@ -1,9 +1,11 @@
 @import "../../App.scss";
 
-.ads-container {
+.ad-cart {
   display: flex;
-  align-items: center;
-  height: 300px;
+  flex-direction: column;
+  min-height: 550px;
+  width: 31%!important;
+  margin: 0 10px;
   box-shadow: 8px 8px 20px 0px rgba($blue, .2);
   border-radius: 15px;
   transition: $transition;
@@ -11,11 +13,19 @@
     box-shadow: 8px 8px 20px 0px rgba($blue, 1);
   }
   div:first-child {
+    height: 250px;
     img {
-      width: 60%;
+      width: 100%;
+      height: inherit;
+      object-fit: contain;
     }
   }
   div:last-child {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
     .ad-price {
       font-size: 22px;
       font-style: italic;

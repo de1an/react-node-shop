@@ -1,0 +1,1 @@
+export const imageRoute = "http://localhost:4000/uploads/images/";

@@ -8,6 +8,9 @@ class ShopService {
       },
     });
   }
+  static deleteAd(id){
+    return axios.delete(`/api/shop/delete-ad/${id}`);
+  }
   static getMyAds(userId){
     return axios.get(`/api/shop/get-my-ads/${userId}`);
   }

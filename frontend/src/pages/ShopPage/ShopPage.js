@@ -3,6 +3,8 @@ import ShopService from "../../services/ShopService";
 import { Link } from "react-router-dom";
 import "./shopPage.scss";
 import ShopFunctions from "../../utilities/ShopFunctions";
+import { routerConfig } from "../../config/routerConfig";
+import { imageRoute } from "../../utilities/configUrl";
 
 function ShopPage() {
 	const [ads, setAds] = useState([]);
@@ -25,20 +27,22 @@ function ShopPage() {
 
   const productsLayout = () => {
     return (
-      ads.map((ad, index) => {
-      return <div className="row my-5 ads-container" key={index}>
-        <div className="col-md-4">
-          <img src={`http://localhost:4000/uploads/images/${ad.images[0]}`} alt="" className="img-fluid  d-block mx-auto" />
+      <div className="row my-5">
+      {ads.map((ad, index) => {
+      return <div className="ad-cart col-md-4 mb-4" key={index}>
+        <div>
+          <img src={`${imageRoute}${ad.images[0]}`} alt="" className="img-fluid  d-block mx-auto" />
         </div>
-        <div className="col-md-8 p-3">
+        <div className="p-3">
           <h2 className="fw-bold">{ad.title}</h2>
-          <p className="my-3">{ad.description.slice(0,100)}...</p>
+          <p className="my-3">{ad.description.slice(0,30)}...</p>
           <p className="fw-bold ad-price">Price: <span>{ShopFunctions.calculatePrice(ad.price)}</span>
           </p>
-          <Link to={`/shop/ad/${ad._id}`} className="primary-btn mt-3 d-inline-block">See more</Link>
+          <Link to={routerConfig.SHOP_AD.realUrl(ad._id)} className="primary-btn mt-3 d-inline-block">See more</Link>
         </div>
       </div>
-      })
+      })}
+    </div>
     )
   }
 	return (

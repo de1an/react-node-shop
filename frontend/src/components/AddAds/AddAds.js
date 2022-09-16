@@ -34,9 +34,7 @@ function AddAds({ closePopup }) {
 			.then((res) => {
 				if (res.status === 200) {
 					toast.success("You successfully add your product to our site.", {autoClose: 2000,})
-					setTimeout(() => {
-						window.location.reload();
-					}, 3000)
+					closePopup();
 				}
 			})
 			.catch((err) => {

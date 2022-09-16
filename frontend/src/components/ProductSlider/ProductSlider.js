@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { imageRoute } from "../../utilities/configUrl";
 import "./productSlider.scss";
 
 function ProductSlider({ images }) {
@@ -21,7 +22,7 @@ function ProductSlider({ images }) {
 				<div className="">
 					<img
 						className="img-fluid d-block mx-auto"
-						src={`http://localhost:4000/uploads/images/${images[currentImage]}`}
+						src={`${imageRoute}${images[currentImage]}`}
 						alt="ad title"
 					/>
 				</div>
@@ -39,7 +40,7 @@ function ProductSlider({ images }) {
 							key={index}
 						>
 							<img
-								src={`http://localhost:4000/uploads/images/${image}`}
+								src={`${imageRoute}${image}`}
 								alt="ad title"
 								className="img-fluid w-75 d-block mx-auto"
 							/>

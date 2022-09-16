@@ -3,6 +3,27 @@ const fileUpload = require("express-fileupload");
 const path = require("path");
 const routes = express.Router();
 const Product = require("../models/productModel");
+const fs = require("fs");
+
+routes.delete("/delete-ad/:id", (req, res) => {
+	let {id} = req.params;
+	let product = null;
+	
+	Product.findById(id, async (err, data) => {
+		if (err) res.status(421).send("Error, please try later");
+		if(!data) res.status(420).send("Product with that id doesn't exist")
+		else {
+			product = data;
+			let filePath = path.join(__dirname, `../uploads/images/`)
+
+			product.images.forEach(img => {
+				fs.unlinkSync(filePath + img)
+			});
+			await product.remove();
+			res.send("Successfully deleted your ad")
+		}
+	})
+});
 
 routes.get("/get-all-ads", (req, res) => {
 	Product.find({}, (err, products) => {
@@ -15,11 +36,13 @@ routes.get("/get-all-ads", (req, res) => {
 
 routes.get("/get-single-ad/:id", (req, res) => {
 	const { id } = req.params;
-	
-	Product.findOne({_id: id}, (err, data) => {
-		if(err) res.status(500).send("Error");
-		data ? res.send(data) : res.status(400).send("The product doesn't exist");
-	})
+
+	Product.findOne({ _id: id }, (err, data) => {
+		if (err) res.status(500).send("Error");
+		data
+			? res.send(data)
+			: res.status(400).send("The product doesn't exist");
+	});
 });
 
 routes.post("/add-product", fileUpload(), async (req, res) => {

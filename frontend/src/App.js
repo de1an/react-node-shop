@@ -1,20 +1,21 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { routerConfig } from "./config/routerConfig";
-import AuthPage from "./pages/AuthPage/AuthPage";
-import ShopPage from "./pages/ShopPage/ShopPage";
-import HomePage from "./pages/HomePage/HomePage";
-import Navigation from "./components/Navigation/Navigation";
 import { useDispatch } from "react-redux";
+import { routerConfig } from "./config/routerConfig";
+import Navigation from "./components/Navigation/Navigation";
+import EditProduct from "./components/EditProduct/EditProduct";
 import { setUser } from "./redux/userSlice";
 import { setCart } from "./redux/cartSlice";
-import "react-toastify/dist/ReactToastify.css";
-import "./App.scss";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 import MyAdsPage from "./pages/MyAdsPage/MyAdsPage";
 import UserActivePage from "./pages/UserActivePage/UserActivePage";
 import SingleAdPage from "./pages/SingleAdPage/SingleAdPage";
+import AuthPage from "./pages/AuthPage/AuthPage";
+import ShopPage from "./pages/ShopPage/ShopPage";
+import HomePage from "./pages/HomePage/HomePage";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.scss";
 
 axios.defaults.baseURL = "http://localhost:4000";
 
@@ -58,6 +59,7 @@ function App() {
 					element={<UserProfilePage />}
 				/>
 				<Route path={routerConfig.MY_ADS.url} element={<MyAdsPage />} />
+				<Route path={routerConfig.MY_ADS_EDIT.url} element={<EditProduct />} />
 				<Route
 					path={routerConfig.USER_ACTIVE.url}
 					element={<UserActivePage />}
