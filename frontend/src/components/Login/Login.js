@@ -12,7 +12,7 @@ function Login({ showLoginForm }) {
 	const dispatch = useDispatch();
 	const [isFormValid, setIsFormValid] = useState(true);
 	const [isApiSuccess, setIsApiSuccess] = useState(true);
-	const [isUserExists, setIsUserExists] = useState(true);
+	const [errorMessage, setErrorMessage] = useState("");
 
 	const [userData, setUserData] = useState({
 		email: "",
@@ -20,9 +20,9 @@ function Login({ showLoginForm }) {
 	});
 
 	const onHandleInput = (e) => {
+		setErrorMessage("");
 		setIsFormValid(true);
 		setIsApiSuccess(true);
-		setIsUserExists(true);
 		let newInput = userData;
 		newInput[e.target.name] = e.target.value;
 		setUserData(newInput);
@@ -44,11 +44,7 @@ function Login({ showLoginForm }) {
 				}
 			})
 			.catch((err) => {
-				if (err.response.status === 400) {
-					setIsUserExists(false);
-					return;
-				}
-				setIsApiSuccess(false);
+				setErrorMessage(err.response.data);
 			});
 	};
 
@@ -90,7 +86,7 @@ function Login({ showLoginForm }) {
 			{!isApiSuccess && (
 				<p>Something went wrong on server. Please try again later.</p>
 			)}
-			{!isUserExists && <p>Invalid password or email</p>}
+			<p>{errorMessage && errorMessage}</p>
 
 			<p className="text-center fw-bolder">
 				Don't have an account?{" "}
