@@ -1,11 +1,30 @@
 @import "../../App.scss";
 
 .img-cart {
+  position: relative;
   height: 150px;
-  width: 30%;
+  width: 30%!important;
+  margin: 0 5px;
+  padding: 10px;
+  box-shadow: $box-shadow;
+  border-radius: 10px;
+  .image-checkbox {
+    width: 20px; height: 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+  }
   img {
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     height: 100%;
+  }
+}
+
+.edit-btn {
+  background-color: $blue!important;
+  border: none!important;
+  &:hover {
+    border: none!important;
   }
 }

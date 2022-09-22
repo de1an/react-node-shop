@@ -15,10 +15,12 @@ function ShopPage() {
 		ShopService.getAllAds()
 			.then((res) => {
 				if (res.status === 200) {
+          
           setAds(res.data);
 				}
 			})
 			.catch((err) => {
+        console.log(err.response.data);
         setIsApiError(true);
       }).finally(() => {
         setIsApiFinish(true);
@@ -35,7 +37,7 @@ function ShopPage() {
         </div>
         <div className="p-3">
           <h2 className="fw-bold">{ad.title}</h2>
-          <p className="my-3">{ad.description.slice(0,30)}...</p>
+          <p className="my-3">{ad.description.slice(0,140)}...</p>
           <p className="fw-bold ad-price">Price: <span>{ShopFunctions.calculatePrice(ad.price)}</span>
           </p>
           <Link to={routerConfig.SHOP_AD.realUrl(ad._id)} className="primary-btn mt-3 d-inline-block">See more</Link>
@@ -47,8 +49,8 @@ function ShopPage() {
   }
 	return (
     <div className="container">
-      {isApiError && <p>An error has occurred, please try again later</p>}
-      {(isApiFinish && ads.length) && productsLayout()}
+      {isApiError && <p className="mt-3">An error has occurred, please try again later</p>}
+      {(isApiFinish && ads.length) ? productsLayout() : null}
     </div>
   );
 }

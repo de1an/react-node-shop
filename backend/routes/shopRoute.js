@@ -1,5 +1,4 @@
 const express = require("express");
-const fileUpload = require("express-fileupload");
 const path = require("path");
 const routes = express.Router();
 const Product = require("../models/productModel");
@@ -16,9 +15,13 @@ routes.delete("/delete-ad/:id", (req, res) => {
 			product = data;
 			let filePath = path.join(__dirname, `../uploads/images/`)
 
-			product.images.forEach(img => {
-				fs.unlinkSync(filePath + img)
-			});
+			try {
+				product.images.forEach(img => {
+					fs.unlinkSync(filePath + img)
+				});
+			} catch (error) {
+				console.log(error);
+			}
 			await product.remove();
 			res.send("Successfully deleted your ad")
 		}
@@ -28,9 +31,7 @@ routes.delete("/delete-ad/:id", (req, res) => {
 routes.get("/get-all-ads", (req, res) => {
 	Product.find({}, (err, products) => {
 		if (err) res.status(501).send("Something went wrong");
-		products
-			? res.send(products)
-			: res.status(400).send("Products don't exists");
+		(products.length) ? res.send(products) : res.status(400).send("Products don't exists");
 	});
 });
 
@@ -45,7 +46,63 @@ routes.get("/get-single-ad/:id", (req, res) => {
 	});
 });
 
-routes.post("/add-product", fileUpload(), async (req, res) => {
+routes.put("/edit-product", (req, res) => {
+	const product = JSON.parse(req.body.product);
+	let newImages = req.files?.newImages;
+	let savedImages = [];
+	const arrayOfNewImages = [];
+	const filePath = path.join(__dirname, `../uploads/images/`);
+
+	if(product.deleteImages.length){
+		savedImages = product.images.filter(item => {
+			if(!product.deleteImages.includes(item)){
+				return item;
+			}
+		})
+		product.deleteImages.forEach(img => {
+			fs.unlinkSync(filePath + img);
+		});
+		
+	} else {
+		savedImages = [...product.images];
+	}
+	delete product.deleteImages;
+
+	if(newImages === undefined){
+		// no images
+	} else if(newImages.length){
+		newImages.forEach(item => {
+			let fileName = `${new Date().getTime()}${item.name}`;
+			let imgPath = filePath + fileName;
+			item.mv(imgPath , err => {
+				err && res.status(500).send("Error on upload image");
+			})
+			arrayOfNewImages.push(fileName);
+		})
+	} else {
+		let fileName = `${new Date().getTime()}${newImages.name}`;
+		let imgPath = filePath + fileName;
+		newImages.mv(imgPath ,err => {
+			err && res.status(500).send("Error on upload image");
+		})
+		arrayOfNewImages.push(fileName);
+	}
+
+	let images = [...savedImages, ...arrayOfNewImages];
+	product.price = parseInt(product.price);
+	product.images = [...images];
+	
+
+	Product.updateOne({_id: product._id, userId: product.userId}, product, (err, result) => {
+		if(err) res.status(500).send("Currentlly not possible to update your ad.");
+		result.modifiedCount === 1 ? 
+			res.send("You successfully updated your ad.") :
+			res.status(401).send("Update failed.");
+	})
+
+})
+
+routes.post("/add-product", async (req, res) => {
 	const userImages = req.files.images; // one value is an object and multiple value are array
 	const userProduct = JSON.parse(req.body.product);
 	let arrayOfImages = null;

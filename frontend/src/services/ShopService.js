@@ -8,6 +8,13 @@ class ShopService {
       },
     });
   }
+  static editProduct(product){
+    return axios.put("/api/shop/edit-product", product, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  }
   static deleteAd(id){
     return axios.delete(`/api/shop/delete-ad/${id}`);
   }
