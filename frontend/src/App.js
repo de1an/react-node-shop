@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { routerConfig } from "./config/routerConfig";
 import Navigation from "./components/Navigation/Navigation";
 import EditProduct from "./components/EditProduct/EditProduct";
+import Loader from "./components/Loader/Loader";
 import { setUser } from "./redux/userSlice";
 import { setCart } from "./redux/cartSlice";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
@@ -44,7 +45,8 @@ function App() {
 	};
 
 	return (
-		<div>
+		<>
+			<Loader />
 			<Navigation />
 			<Routes>
 				<Route path={routerConfig.HOME.url} element={<HomePage />} />
@@ -65,10 +67,8 @@ function App() {
 					element={<UserActivePage />}
 				/>
 			</Routes>
-		</div>
+		</>
 	);
 }
 
 export default App;
-
-// shop cart 15.00

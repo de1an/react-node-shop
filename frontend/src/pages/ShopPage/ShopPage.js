@@ -5,17 +5,20 @@ import "./shopPage.scss";
 import ShopFunctions from "../../utilities/ShopFunctions";
 import { routerConfig } from "../../config/routerConfig";
 import { imageRoute } from "../../utilities/configUrl";
+import {useDispatch} from "react-redux";
+import {showLoader} from "../../redux/loaderSlice";
 
 function ShopPage() {
 	const [ads, setAds] = useState([]);
   const [isApiFinish, setIsApiFinish] = useState(false);
   const [isApiError, setIsApiError] = useState(false);
+  const dispatch = useDispatch();
 
 	useEffect(() => {
+    dispatch(showLoader(true))
 		ShopService.getAllAds()
 			.then((res) => {
 				if (res.status === 200) {
-          
           setAds(res.data);
 				}
 			})
@@ -24,6 +27,9 @@ function ShopPage() {
         setIsApiError(true);
       }).finally(() => {
         setIsApiFinish(true);
+      })
+      .finally(() => {
+        dispatch(showLoader(false))
       })
 	}, []);
 

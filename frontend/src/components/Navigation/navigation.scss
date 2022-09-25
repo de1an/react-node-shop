@@ -1,7 +1,7 @@
 @import "../../App.scss";
 
 .navigation {
-  padding: 5px 0;
+  padding: 8px 0;
   border-bottom: 1px solid $blue;
   background-color: $blue;
   .link-nav {
@@ -27,10 +27,14 @@
 .logo {
   font-family: 'Merriweather', serif;
   font-weight: 700;
-  font-size: 50px;
+  font-size: 40px;
   color: $white !important;
+  height: 100%;
   &:hover {
     color: $black !important;
+  }
+  .logo-img {
+    width: 60px;
   }
 }
 

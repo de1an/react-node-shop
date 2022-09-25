@@ -63,7 +63,8 @@ function Navigation() {
 				<div className="row d-flex justify-content-end align-items-center">
 					<div className="col-md-4">
 						<Link to="/" className="logo">
-							.shop
+							<img src={require("../../assets/images/logo.png")} className="logo-img" alt="logo" />
+							<span>.Shop</span>
 						</Link>
 					</div>
 					<div className="col-md-8">
