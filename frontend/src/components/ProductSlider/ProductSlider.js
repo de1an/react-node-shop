@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { imageRoute } from "../../utilities/configUrl";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
 import "./productSlider.scss";
 
 function ProductSlider({ images }) {
@@ -18,35 +22,28 @@ function ProductSlider({ images }) {
 
 	return (
 		<>
-			<div className="current-image">
-				<div className="">
+			<div className="current-image mb-3">
 					<img
 						className="img-fluid d-block mx-auto"
 						src={`${imageRoute}${images[currentImage]}`}
 						alt="ad title"
 					/>
-				</div>
 			</div>
-			<div className="other-images d-flex justify-content-start">
-				{images.map((image, index) => {
-					return (
-						<div
-							className={`d-inline w-25 mx-1 px-2 small-img-container ${
-								currentImage === index ? "current" : ""
-							}`}
-							onClick={() => {
-								onHandleCurrentImage(index);
-							}}
-							key={index}
-						>
-							<img
-								src={`${imageRoute}${image}`}
-								alt="ad title"
-								className="img-fluid w-75 d-block mx-auto"
-							/>
-						</div>
-					);
-				})}
+			<div className="product-swiper">
+				<Swiper
+					modules={[Navigation]}
+					navigation
+					spaceBetween={5}
+					slidesPerView={3}
+				>
+					{images.map((item, index) => {
+						return (
+							<SwiperSlide key={index} onClick={() => onHandleCurrentImage(index)}>
+								<img alt="title" src={`${imageRoute}${item}`}/>
+							</SwiperSlide>
+						)
+					})}
+				</Swiper>
 			</div>
 		</>
 	);

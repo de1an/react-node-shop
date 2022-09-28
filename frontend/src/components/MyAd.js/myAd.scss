@@ -1,7 +1,10 @@
 @import "../../App.scss";
 
 .product-card {
-  width: 33%;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   &:hover {
     transition: $transition;
     box-shadow: $box-shadow;

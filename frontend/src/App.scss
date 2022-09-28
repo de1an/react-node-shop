@@ -8,18 +8,18 @@ $gray: #767676;
 $transition: .3s ease-in;
 $box-shadow: 8px 8px 20px 0px rgba($gray, .5);
 
-* {
-  margin-bottom: 0 !important;
-}
 p {
   color: $gray;
 }
+ul, p {
+  margin-bottom: 0;
+}
 a {
   color: $gray;
-  text-decoration: none !important;
+  text-decoration: none;
   transition: $transition;
   &:hover {
-    color: $white !important;
+    color: $white;
   }
 }
 ul {
@@ -29,7 +29,7 @@ h1, h2, h3, h4 {
   font-family: 'Merriweather', serif;
 }
 h3 {
-  font-weight: 900!important;
+  font-weight: 900;
   font-size: 28px;
 }
 body {

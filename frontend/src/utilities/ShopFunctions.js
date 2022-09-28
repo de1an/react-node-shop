@@ -9,6 +9,12 @@ class ShopFunctions {
       currency: "EUR",
     })
   }
+  static lowerToHigher(ads) {
+    return ads.sort((a, b) => a.price - b.price);
+  }
+  static higherToLower(ads) {
+    return ads.sort((a, b) => b.price - a.price);
+  }
 }
 
 export default ShopFunctions;

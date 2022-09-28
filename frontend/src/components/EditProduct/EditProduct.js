@@ -83,26 +83,14 @@ function EditProduct() {
     <>
     <div className="container">
       <div className="row my-4">
+        <h3 className="my-3">Edit your product</h3>
         <div className="col-md-5">
-          <h2 className="fw-bold mb-3">Edit your product</h2>
           <label htmlFor="title">Title:</label>
           <input type="text" name="title" defaultValue={ad.title} className="form-control mb-3" onInput={onHandleInput}/>
           <label htmlFor="description">Description:</label>
           <textarea name="description" rows="5" defaultValue={ad.description} className="form-control mb-3" onInput={onHandleInput}/>
           <label htmlFor="price">Price:</label> 
-          <input type="text" name="price" defaultValue={ad.price} className="form-control mb-3" onInput={onHandleInput}/>   
-        </div>
-        <div className="col-md-7">
-          <h3 className="mb-4">Images:</h3>
-          <p className="mb-3">Select the image if you want to delete it.</p>
-          <div className="images-container d-flex mb-4">
-            {ad?.images && ad.images.map((image, index) => {
-              return <div className="img-cart" key={index}>
-                <input type="checkbox" id="img-check" data-index={index} className="image-checkbox" onChange={(e) => onHandleIsChecked(e, image)}/>
-                <img src={imageRoute + image} alt="title img" />
-              </div>
-            })}
-          </div>
+          <input type="text" name="price" defaultValue={ad.price} className="form-control mb-3" onInput={onHandleInput}/>
           <label htmlFor="images">Add new images</label>
 						<input
 							onInput={onHandleFile}
@@ -111,7 +99,19 @@ function EditProduct() {
 							name="images"
 							id="images"
 							className="form-control"
-						/>
+						/>   
+        </div>
+        <div className="col-md-7">
+          <h3 className="mb-4">Images:</h3>
+          <p className="mb-3">Select the image if you want to delete it.</p>
+          <div className="row mb-4">
+            {ad?.images && ad.images.map((image, index) => {
+              return <div className="img-cart col-md-4" key={index}>
+                <input type="checkbox" id="img-check" data-index={index} className="image-checkbox" onChange={(e) => onHandleIsChecked(e, image)}/>
+                <img src={imageRoute + image} alt="title img" />
+              </div>
+            })}
+          </div>
         </div>
       </div>
       <button onClick={onHandleSubmit} className="primary-btn edit-btn">Edit product</button>

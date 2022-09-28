@@ -8,20 +8,20 @@
     margin-left: 25px;
     font-size: 20px;
     border-bottom: 2px solid transparent;
-    color: $white !important;
+    color: $white;
     &:hover {
-      color: $black !important;
+      color: $black;
       border-bottom: 2px solid $black;
     }
     &.active {
-      color: $black !important;
+      color: $black;
       border-bottom: 2px solid $black;
     }
   }
   .links-group {
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
   }
 }
 .logo {

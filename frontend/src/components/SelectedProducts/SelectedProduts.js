@@ -20,7 +20,7 @@ function SelectedProduts({ad, index}) {
         <img src={`${imageRoute}${ad.images[0]}`} alt="ad title" className="img-fluid" />
       </div>
       <div className="col-md-8">
-        <p>{ad.title.substr(0, 25)}...</p>
+        <p>{ad.title.substr(0, 30)}</p>
         <Quantity id={ad._id} quantity={ad.quantity} /> 
         <p>Price: <span className="price">{ShopFunctions.calculatePrice(ad.price, ad.quantity)}</span></p>
       </div>
