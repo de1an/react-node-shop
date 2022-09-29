@@ -17,6 +17,7 @@ import ShopPage from "./pages/ShopPage/ShopPage";
 import HomePage from "./pages/HomePage/HomePage";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
+import NotFound404 from "./pages/NotFound404/NotFound404";
 
 axios.defaults.baseURL = "http://localhost:4000";
 
@@ -66,6 +67,7 @@ function App() {
 					path={routerConfig.USER_ACTIVE.url}
 					element={<UserActivePage />}
 				/>
+				<Route path="*" element={<NotFound404 />} />
 			</Routes>
 		</>
 	);
