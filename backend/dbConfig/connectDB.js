@@ -8,6 +8,7 @@ const connectDB = () => {
   })
   .catch((err) => {
     console.log("Something is wrong " + err);
+    connectDB();
   });
 }
 

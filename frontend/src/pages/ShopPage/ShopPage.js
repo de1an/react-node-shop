@@ -29,7 +29,6 @@ function ShopPage() {
 				}
 			})
 			.catch((err) => {
-        console.log(err.response.data);
         setIsApiError(true);
       }).finally(() => {
         setIsApiFinish(true);
