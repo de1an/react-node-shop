@@ -31,7 +31,7 @@ routes.delete("/delete-ad/:id", (req, res) => {
 routes.get("/get-all-ads", (req, res) => {
 	Product.find({}, (err, products) => {
 		if (err) res.status(501).send("Something went wrong");
-		(products.length) ? res.send(products) : res.status(400).send("Products don't exists");
+		(products) ? res.send(products) : res.status(400).send("Products don't exists");
 	});
 });
 

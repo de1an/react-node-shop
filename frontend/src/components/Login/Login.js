@@ -5,14 +5,13 @@ import PasswordField from "../PasswordField/PasswordField";
 import { routerConfig } from "../../config/routerConfig";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/userSlice";
+import {showLoader} from "../../redux/loaderSlice";
+import {toast, ToastContainer} from "react-toastify";
 import "./login.scss";
 
 function Login({ showLoginForm }) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const [isFormValid, setIsFormValid] = useState(true);
-	const [isApiSuccess, setIsApiSuccess] = useState(true);
-	const [errorMessage, setErrorMessage] = useState("");
 
 	const [userData, setUserData] = useState({
 		email: "",
@@ -20,9 +19,6 @@ function Login({ showLoginForm }) {
 	});
 
 	const onHandleInput = (e) => {
-		setErrorMessage("");
-		setIsFormValid(true);
-		setIsApiSuccess(true);
 		let newInput = userData;
 		newInput[e.target.name] = e.target.value;
 		setUserData(newInput);
@@ -31,10 +27,10 @@ function Login({ showLoginForm }) {
 	const onSubmitForm = (e) => {
 		e.preventDefault();
 		if (!userData.email || !userData.password) {
-			setIsFormValid(false);
+			toast.error("Email and password is required!", {autoClose: 3000})
 			return;
 		}
-		setIsFormValid(true);
+		dispatch(showLoader(true))
 		AuthService.login(userData)
 			.then((response) => {
 				if (response && response.status === 200) {
@@ -44,8 +40,9 @@ function Login({ showLoginForm }) {
 				}
 			})
 			.catch((err) => {
-				setErrorMessage(err.response.data);
-			});
+				toast.error(err.response.data, {autoClose: 3000});
+			})
+			.finally(() => dispatch(showLoader(false)));
 	};
 
 	const showRegister = (e) => {
@@ -80,14 +77,6 @@ function Login({ showLoginForm }) {
 				</button>
 			</form>
 
-			{!isFormValid ? (
-				<p className="text-center">Email and password is required!</p>
-			) : null}
-			{!isApiSuccess && (
-				<p>Something went wrong on server. Please try again later.</p>
-			)}
-			<p>{errorMessage && errorMessage}</p>
-
 			<p className="text-center fw-bolder">
 				Don't have an account?{" "}
 				<a
@@ -100,6 +89,7 @@ function Login({ showLoginForm }) {
 					Sign up
 				</a>
 			</p>
+			<ToastContainer />
 		</div>
 	);
 }

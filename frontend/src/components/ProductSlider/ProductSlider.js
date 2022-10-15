@@ -24,7 +24,7 @@ function ProductSlider({ images }) {
 		<>
 			<div className="current-image mb-3">
 					<img
-						className="img-fluid d-block mx-auto"
+						className="d-block mx-auto"
 						src={`${imageRoute}${images[currentImage]}`}
 						alt="ad title"
 					/>

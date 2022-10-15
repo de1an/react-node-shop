@@ -3,6 +3,8 @@
 .current-image {
   height: 350px;
   img {
+    height: inherit;
+    object-fit: contain;
     width: 80%;
   }
 }

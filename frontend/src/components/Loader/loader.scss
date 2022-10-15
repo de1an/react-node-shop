@@ -1,7 +1,7 @@
 @import "../../App.scss";
 
 .loader-overlay {
-  position: absolute;
+  position: fixed;
   height: 100vh;
   width: 100%;
   background-color: rgba($gray, .3);

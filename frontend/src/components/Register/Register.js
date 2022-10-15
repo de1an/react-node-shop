@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import PasswordField from "../PasswordField/PasswordField";
 import AuthService from "../../services/AuthService";
+import { useDispatch } from "react-redux";
+import {showLoader} from "../../redux/loaderSlice";
 import "./register.scss";
 
 function Register({ showLoginForm }) {
@@ -15,6 +17,7 @@ function Register({ showLoginForm }) {
 		city: "",
 		gender: "",
 	});
+ 	const dispatch = useDispatch();
 
 	const onHandleInput = (e) => {
 		let newUser = user;
@@ -30,7 +33,7 @@ function Register({ showLoginForm }) {
 			);
 			return;
 		}
-    
+    dispatch(showLoader(true))
 		AuthService.register(user)
 			.then((res) => {
 				if (res && res.status === 200) {
@@ -46,7 +49,8 @@ function Register({ showLoginForm }) {
           return;
         }
         toast.error("Something went wron on server. Please, try again later", {autoClose: 3000});
-			});
+			})
+			.finally(() => dispatch(showLoader(false)));
 	};
 
 	return (

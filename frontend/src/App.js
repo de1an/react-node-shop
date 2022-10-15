@@ -15,9 +15,9 @@ import SingleAdPage from "./pages/SingleAdPage/SingleAdPage";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import ShopPage from "./pages/ShopPage/ShopPage";
 import HomePage from "./pages/HomePage/HomePage";
+import NotFound404 from "./pages/NotFound404/NotFound404";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
-import NotFound404 from "./pages/NotFound404/NotFound404";
 
 axios.defaults.baseURL = "http://localhost:4000";
 
@@ -57,12 +57,12 @@ function App() {
 					path={routerConfig.SHOP_AD.url}
 					element={<SingleAdPage />}
 				/>
-				<Route
-					path={routerConfig.USER_PROFILE.url}
-					element={<UserProfilePage />}
-				/>
-				<Route path={routerConfig.MY_ADS.url} element={<MyAdsPage />} />
-				<Route path={routerConfig.MY_ADS_EDIT.url} element={<EditProduct />} />
+				{(JSON.parse(localStorage.getItem("user"))) ?
+					<>
+						<Route path={routerConfig.USER_PROFILE.url} element={<UserProfilePage />} />
+						<Route path={routerConfig.MY_ADS.url} element={<MyAdsPage />} />
+						<Route path={routerConfig.MY_ADS_EDIT.url} element={<EditProduct />} />
+					</>  : null}
 				<Route
 					path={routerConfig.USER_ACTIVE.url}
 					element={<UserActivePage />}
