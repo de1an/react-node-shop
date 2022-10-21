@@ -53,6 +53,7 @@ function App() {
 				<Route path={routerConfig.HOME.url} element={<HomePage />} />
 				<Route path={routerConfig.AUTH.url} element={<AuthPage />} />
 				<Route path={routerConfig.SHOP.url} element={<ShopPage />} />
+				<Route path={routerConfig.SHOP_SEARCH.url} element={<ShopPage />} />
 				<Route
 					path={routerConfig.SHOP_AD.url}
 					element={<SingleAdPage />}

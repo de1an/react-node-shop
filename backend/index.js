@@ -21,6 +21,7 @@ connectDB();
 // * routes
 app.use("/api/user", userRoute);
 app.use("/api/shop", shopRoute);
+
 app.use('/uploads/images', express.static('uploads/images'));
 
 

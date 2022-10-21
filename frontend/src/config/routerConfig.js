@@ -7,6 +7,9 @@ export const routerConfig = {
 		name: "Shop",
 		url: "/shop",
 	},
+	SHOP_SEARCH: {
+		url: "/shop/search",
+	},
 	AUTH: {
 		name: "Login / Register",
 		url: "/auth",

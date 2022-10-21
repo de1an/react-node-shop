@@ -27,6 +27,9 @@ class ShopService {
   static getSingleAd(id){
     return axios.get(`/api/shop/get-single-ad/${id}`);
   }
+  static getAllSearched(data){
+    return axios.get(`/api/shop/search?q=${data}`);
+  }
 }
 
 export default ShopService;

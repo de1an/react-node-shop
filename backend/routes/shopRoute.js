@@ -4,6 +4,18 @@ const routes = express.Router();
 const Product = require("../models/productModel");
 const fs = require("fs");
 
+routes.get("/search", (req, res) => {
+	const q = req.query.q;
+	const query = q ? {title: { "$regex": q, "$options": "i" }} : {};
+
+	Product.find(query, (err, data) => {
+		if(err) return res.status(401).send("Something went wrong");
+		console.log(data);
+		if(!data.length) return res.status(401).send("The products with that name don't exist.");
+		res.send(data);
+	});
+})
+
 routes.delete("/delete-ad/:id", (req, res) => {
 	let {id} = req.params;
 	let product = null;
